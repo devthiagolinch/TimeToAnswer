@@ -1,0 +1,40 @@
+<h1><%= t('messages.listing', model: @questions.model_name.human(cont: 2)) %></h1>
+
+
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th><%= translate_field(@questions, :description) %></th>
+        <th><%= translate_field(@questions, :subject) %></th>
+        <th> <%= link_to new_admins_backoffice_question_path, class:"btn btn-success" do %>
+          <i class="glyphicon-plus"></i>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <th scope="row"><%= question.id %></th>
+        <td><%= question.description.truncate(50) %></td>
+        <td><%= question.subject.description.truncate(30) %></td>
+        <td>
+        <%= link_to edit_admins_backoffice_question_path(question), class:"btn btn-primary btn-circle" do %>
+          <i class="fa fa-edit"></i>
+        <% end %>
+
+        <%= link_to admins_backoffice_questions_path(question), method: :delete, class:"btn btn-danger btn-circle",
+      data: {confirm: t('messages.confirm_with', item: question.description.truncate(15))} do %>
+          <i class="fa fa-trash-o"></i>
+        <% end %>
+
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+    <div class="text-center">
+      <%= paginate @questions %>
+    </div>
+</div>
