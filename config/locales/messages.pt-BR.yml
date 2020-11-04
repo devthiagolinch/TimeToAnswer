@@ -4,3 +4,12 @@
     listing: Listando %{model}
     editing: Editando  %{model}
     new: Novo %{model}
+    password: Senha %{model}
+  placeholder:
+    email: Email
+    admin_password: Senha
+    admin_password_confirmation: Confirme a Senha
+    description: Descrição
+    subject: Assunto
+    password: Senha
+    password_confirmation: Confirme a Senha
