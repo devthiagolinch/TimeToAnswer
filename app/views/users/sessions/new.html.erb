@@ -1,28 +1,33 @@
-<h2>Log in - User</h2>
+<div>
+  <a class="hiddenanchor" id="signup"></a>
+  <a class="hiddenanchor" id="signin"></a>
 
-<%= link_to 'Back', site_welcome_index_path %>
+  <div class="login_wrapper">
+    <div class="animate form login_form">
+      <section class="login_content">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <form>
+          <h1>Login</h1>
+          <div>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email",
+            class:"form-control", placeholder:"Email" %>
+          </div>
+          <div>
+            <%= f.password_field :password, placeholder:"Password",
+            class:"form-control",autocomplete: "current-password" %>
+          </div>
+          <div>
+            <%= f.submit "Log in", class:"btn btn-default submit" %>
+          </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+          <div class="clearfix"></div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+          <div class="separator">
+            <%= render "users/shared/links" %>
+          </div>
+        </form>
+        <% end %>
+      </section>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>

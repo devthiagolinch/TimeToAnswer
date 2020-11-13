@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>TimeToAnswer</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Time to Answer</title>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application' %>
-    <%= javascript_include_tag 'application' %>
+    <%= stylesheet_link_tag    'user_devise' %>
+    <%= javascript_include_tag 'user_devise' %>
   </head>
 
-  <body>  
-    <h3>User Devise</h3>
+  <body class="login">
     <%= yield %>
   </body>
 </html>
