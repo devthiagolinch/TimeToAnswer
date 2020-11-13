@@ -21,5 +21,10 @@ Rails.application.config.assets.precompile += %w( sb-admin-2.js sb-admin-2.css
                                                   custom.js custom.css
                                                   img.jpg
                                                   user_devise.css user_devise.js )
+
+  # /lib/assets - site layout
+Rails.application.config.assets.precompile += %w( site.js site.css
+                                                  surface-fix.js surface-fix.css
+                                                  navbar.css )
 # /vendor/assets
 Rails.application.config.assets.precompile += %w( jquery-2.2.3/dist/jquery.js )
