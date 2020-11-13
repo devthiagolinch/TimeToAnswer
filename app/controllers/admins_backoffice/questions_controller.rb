@@ -1,9 +1,11 @@
 class AdminsBackoffice::QuestionsController < AdminsBackofficeController
-  before_action :get_subjects, only: [:edit, :new]
   before_action :set_question, only: [:edit, :update, :destroy]
+  before_action :get_subjects, only: [:new, :edit]
 
   def index
-    @questions = Question.includes(:subject).order(:description).page(params[:page])
+    @questions = Question.includes(:subject)
+                         .order(:id)
+                         .page(params[:page])
   end
 
   def new
@@ -12,44 +14,37 @@ class AdminsBackoffice::QuestionsController < AdminsBackofficeController
 
   def create
     @question = Question.new(params_question)
-    if @question.save()
-    redirect_to admins_backoffice_questions_path,
-    notice: "Questão cadastrada com sucesso!"
+    if  @question.save
+      redirect_to admins_backoffice_questions_path, notice: "Questão cadastrada com sucesso!"
     else
-    render :new
+      render :new
     end
   end
 
   def edit
-    
   end
 
-  def update
-
-    if @question.update(params_question)
-      redirect_to admins_backoffice_questions_path,
-      notice:"Questão atualizada com Sucesso!"
+  def update    
+    if  @question.update(params_question)
+      redirect_to admins_backoffice_questions_path, notice: "Questão atualizado com sucesso!"
     else
       render :edit
     end
   end
 
   def destroy
-
-    if @question.destroy
-      redirect_to admins_backoffice_questions_path,
-      notice:"Questão escluída com Sucesso!"
+    if  @question.destroy
+      redirect_to admins_backoffice_questions_path, notice: "Questão excluída com sucesso!"
     else
       render :index
     end
   end
 
   private
-
+  
   def params_question
     params.require(:question).permit(:description, :subject_id,
-    answers_attributes: [:id, :description, :correct, :_destroy]
-    )
+       answers_attributes: [:id, :description, :correct, :_destroy])
   end
 
   def set_question
@@ -57,6 +52,6 @@ class AdminsBackoffice::QuestionsController < AdminsBackofficeController
   end
 
   def get_subjects
-    @subject = Subject.all
+    @subjects = Subject.all
   end
 end
