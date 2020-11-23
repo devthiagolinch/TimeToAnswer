@@ -3,8 +3,8 @@ class AdminsBackoffice::QuestionsController < AdminsBackofficeController
   before_action :get_subjects, only: [:new, :edit]
 
   def index
-    @questions = Question.includes(:subject)
-                         .order(:description)
+    @questions = Question.order(:description)
+                         .includes(:subject)
                          .page(params[:page])
   end
 
