@@ -35,17 +35,17 @@
             <a class="navbar-brand" href="#">Time to Answer</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-            <form class="navbar-form navbar-left" role="search">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-              </div>
-              <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-            </ul>
+            <ul class="nav navbar-nav"></ul>
+            <%= form_with url: site_search_path, local: true, class:"navbar-form
+              navbar-left", method: :get do |form| %>
+                <div class="form-group">
+                  <%= form.text_field :term, class:"form-control", placeholder:"Digite aqui..." %>
+                </div>
+              <button type="submit" class="btn btn-default">Pesquisar</button>
+            <% end %>
             <ul class="nav navbar-nav navbar-right">
               <li class="active"><%= link_to 'Home', site_welcome_index_path %></li>
-              <% if user_signed_in? %>
+              <% unless user_signed_in? %>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                                 aria-expanded="false"> <%= current_user.email %> <span class="caret"></span></a>
