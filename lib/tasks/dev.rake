@@ -10,10 +10,10 @@ namespace :dev do
       show_spinner("Criando BD...") { %x(rails db:create) }
       show_spinner("Migrando BD...") { %x(rails db:migrate) }
       show_spinner("Cadastrando o administrador padrão...") { %x(rails dev:add_default_admin) }
-      show_spinner("Cadastrando outros administradores...") { %x(rails dev:add_others_adms) }
+      #show_spinner("Cadastrando outros administradores...") { %x(rails dev:add_others_adms) }
       show_spinner("Cadastrando o usuário padrão...") { %x(rails dev:add_default_user) }
-      show_spinner("Cadastrando assuntos padrões...") { %x(rails dev:add_subjects) }
-      show_spinner("Cadastrando questões padrões...") { %x(rails dev:add_answers_and_questions) }
+      #show_spinner("Cadastrando assuntos padrões...") { %x(rails dev:add_subjects) }
+      #show_spinner("Cadastrando questões padrões...") { %x(rails dev:add_answers_and_questions) }
     else
       puts "Você não está em ambiente de desenvolvimento!"
     end
