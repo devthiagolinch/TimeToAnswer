@@ -72,7 +72,13 @@
 
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
-        
+      
+      <% unless params[:term] %>
+          <h3>Olá <%= current_user.email %></h3>
+      <% else %>
+        <p>Você pesquisou por: <%= params[:term] %></p>
+      <% end %>
+
       </div>
       <%= yield %>
         
