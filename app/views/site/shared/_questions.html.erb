@@ -1,16 +1,36 @@
+<div class="jumbotron">
+      
+      <% unless params[:term] %>
+          <h3>Olá <%= current_user.email %></h3>
+      <% else %>
+        <p>Você pesquisou por: <%= params[:term] %></p>
+      <% end %>
+</div>
 <% @questions.each do |question| %>
-    <div class="panel panel-default">
+  <%= form_with url: site_answer_path, local: true do |form|%>
+    <div class="panel panel-default">    
       <div class="panel-heading">
-      <h3 class="panel-title"><%= question.description %></h3>
+        <h3 class="panel-title"><%= question.description %></h3>
       </div>
       <div class="panel-body">
         <ul>
           <% question.answers.each do |answer| %>
-            <li><%=answer.description%></li>
+            <li style="list-style:none;">
+               <div class="radio">
+                <label>
+                  <%= radio_button_tag 'answer', answer.id %>
+                  <%= answer.description %>
+                </label>
+              </div>
+            </li>
           <% end %>
         </ul>
       </div>
+      <li style="list-style-type: none">
+        <%= form.submit "Responder", class:"btn btn-default" %>
+      </li>
     </div>
+  <% end %>
 <% end %>
 <div class="text-center">
   <%= paginate @questions %>
