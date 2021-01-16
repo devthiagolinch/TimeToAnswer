@@ -24,11 +24,11 @@
               </div>
             </li>
           <% end %>
+          <li style="list-style-type: none">
+            <%= form.submit "Responder", class:"btn btn-default", id:"submit_#{question.id}" %>
+          </li>
         </ul>
-      </div>
-      <li style="list-style-type: none">
-        <%= form.submit "Responder", class:"btn btn-default", id:"submit_#{question.id}" %>
-      </li>
+      </div>      
     </div>
   <% end %>
 <% end %>
