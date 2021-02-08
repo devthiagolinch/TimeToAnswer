@@ -3,4 +3,9 @@ module UsersBackoffice::ProfileHelper
         user.user_profile.gender == current_gender ?
         'btn-primary' : 'btn-default'
     end
+
+    def avatar_url
+        avatar = current_user.user_profile.avatar
+        avatar.attached? ? avatar : 'img.jpg'
+    end 
 end
