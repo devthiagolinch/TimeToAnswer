@@ -1,9 +1,9 @@
 <div class="jumbotron">
       
-      <% unless params[:term] %>
-          <h3>Olá <%= current_user.email %></h3>
+      <% if params[:term] %>
+          <p>Você pesquisou por: <%= params[:term] %></p>
       <% else %>
-        <p>Você pesquisou por: <%= params[:term] %></p>
+          <p>Let's start!</p>
       <% end %>
 </div>
 <% @questions.each do |question| %>
@@ -32,6 +32,12 @@
     </div>
   <% end %>
 <% end %>
-<div class="text-center">
-  <%= paginate @questions %>
-</div>
+<% if user_signed_in? %>
+  <div class="text-center">
+    <%= paginate @questions %>
+  </div>
+  <% else %>
+    <div class="alert alert-warning" role="alert">
+      Efetue login para poder navegar em todas as perguntas... <%= link_to 'Sign In', new_user_session_path %>
+    </div>
+<% end %>
