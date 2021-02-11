@@ -9,7 +9,16 @@ class User < ApplicationRecord
 
   validates :first_name, presence: true, length: {minimum: 2}, on: :update
 
+  # Callback
+  after_create :set_statistic
+
   def full_name
     [self.first_name, self.last_name].join('')
+  end
+
+  private
+
+  def set_statistic
+    AdminStatistic.set_event(AdminStatistic::EVENTS[:total_users])
   end
 end
