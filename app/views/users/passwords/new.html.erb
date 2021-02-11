@@ -1,16 +1,26 @@
-<h2>Forgot your password?</h2>
+<a class="hiddenanchor" id="signin"></a>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+<div class="login_wrapper">
+  <div class="animate form login_form">
+    <section class="login_content">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= devise_error_messages! %>
+      <form>
+        <h1>Forgot your password?</h1>
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+        <div class="actions"  >
+          <%= f.submit "Send me reset password instructions", class:"btn btn-default submit"%>
+        </div>
+        
+        <div class="clearfix"></div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <div class="separator"> <%= render "users/shared/links" %> </div>
+      </form>
+      <% end %>
+    </section>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>
+</div>
