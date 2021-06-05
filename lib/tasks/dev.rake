@@ -12,8 +12,9 @@ namespace :dev do
       show_spinner("Cadastrando o administrador padrão...") { %x(rails dev:add_default_admin) }
       # show_spinner("Cadastrando outros administradores...") { %x(rails dev:add_others_adms) }
       show_spinner("Cadastrando o usuário padrão...") { %x(rails dev:add_default_user) }
-      # show_spinner("Cadastrando assuntos padrões...") { %x(rails dev:add_subjects) }
-      # show_spinner("Cadastrando questões padrões...") { %x(rails dev:add_answers_and_questions) }
+      show_spinner("Cadastrando assuntos padrões...") { %x(rails dev:add_subjects) }
+      show_spinner("Cadastrando questões padrões...") { %x(rails dev:add_answers_and_questions) }
+      show_spinner("Cadastrando questões padrões...") { %x(rails dev:add_answers_to_redis) }
     else
       puts "Você não está em ambiente de desenvolvimento!"
     end
@@ -69,6 +70,14 @@ namespace :dev do
         
         Question.create!(params[:question])
       end
+    end
+  end
+
+  desc "Adiciona as respostas do redis"
+  task add_answers_to_redis: :environment do
+    Answer.find_each do |answer|
+      Rails.cache.write(answer.id,
+      "#{answer.question_id}@@#{answer.correct}")
     end
   end
 
